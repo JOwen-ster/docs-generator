@@ -15,16 +15,6 @@ export interface TreeNode {
   url: string;
 }
 
-interface TreeResponse {
-  tree: TreeNode[];
-  truncated: boolean;
-}
-
-interface BlobResponse {
-  content: string;
-  encoding: "base64" | "utf-8";
-}
-
 const BINARY_EXTENSIONS = new Set([
   "png","jpg","jpeg","gif","webp","ico","bmp","tiff",
   "mp4","mp3","wav","ogg","mov","avi","webm",

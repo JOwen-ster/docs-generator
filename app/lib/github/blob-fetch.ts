@@ -1,5 +1,5 @@
-import { githubFetch } from "./api";
-import { RepoFile, TreeNode } from "./client";
+import { githubFetch } from "./url-fetch";
+import { RepoFile, TreeNode } from "./shared";
 
 interface BlobResponse {
   content: string;
