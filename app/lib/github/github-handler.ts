@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth";
+import { auth } from "@/auth";
 import { githubFetch } from "./url-fetch";
 import { fetchTree } from "./tree-fetch";
 import { fetchBlobs } from "./blob-fetch";
@@ -23,7 +23,7 @@ export async function getArtifactContents(
   selections: ArtifactInput[],
   onProgress?: (completed: number, total: number) => void
 ): Promise<ArtifactContent[]> {
-  const session = await getServerSession();
+  const session = await auth();
   const token = session?.accessToken as string;
 
   // get root of main branch

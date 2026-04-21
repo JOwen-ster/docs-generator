@@ -1,5 +1,3 @@
-import { GITHUB_API } from "./shared";
-
 export async function githubFetch<T>(
   url: string,
   token: string,
