@@ -15,7 +15,7 @@ export default async function Home() {
         ) : (
           <>
             <div className="flex items-center justify-between">
-              <p className="text-sm text-zinc-500">Signed in as {session.user?.name}</p>
+              <p className="text-sm">Signed in as {session.user?.name}</p>
             </div>
             <SignOut />
             <AppShell />
