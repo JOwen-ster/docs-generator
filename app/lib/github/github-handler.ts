@@ -24,7 +24,7 @@ export async function getArtifactContents(
   onProgress?: (completed: number, total: number) => void
 ): Promise<ArtifactContent[]> {
   const session = await auth();
-  const token = session?.accessToken as string;
+  const token = session?.access_token as string;
 
   // get root of main branch
   const { default_branch } = await githubFetch<{ default_branch: string }>(
