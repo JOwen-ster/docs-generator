@@ -1,5 +1,5 @@
+import { GITHUB_API, isBinary, type TreeNode } from "./shared";
 import { githubFetch } from "./url-fetch";
-import { isBinary, TreeNode, GITHUB_API } from "./shared";
 
 const MAX_FILE_SIZE = 500_000;
 
@@ -16,11 +16,11 @@ export async function fetchTree(
   branch: string,
   token: string,
   // Only needed if the full tree is truncated
-  selectedDirs?: string[]
+  selectedDirs?: string[],
 ): Promise<TreeNode[]> {
   const { tree, truncated } = await githubFetch<TreeResponse>(
     `${GITHUB_API}/repos/${owner}/${repo}/git/trees/${branch}?recursive=1`,
-    token
+    token,
   );
 
   if (!truncated) {
@@ -31,7 +31,7 @@ export async function fetchTree(
   // We only care about what the user selected, so fetch those dirs individually.
   if (!selectedDirs?.length) {
     throw new Error(
-      "Repository tree is too large. Please select specific directories."
+      "Repository tree is too large. Please select specific directories.",
     );
   }
 
@@ -44,14 +44,14 @@ async function fetchSelectedDirsIndividually(
   owner: string,
   repo: string,
   token: string,
-  dirs: string[]
+  dirs: string[],
 ): Promise<TreeNode[]> {
   const allNodes: TreeNode[] = [];
 
   for (const dir of dirs) {
     const { tree } = await githubFetch<TreeResponse>(
       `${GITHUB_API}/repos/${owner}/${repo}/git/trees/HEAD:${dir}?recursive=1`,
-      token
+      token,
     );
     // Prefix paths with the dir name so they match the original tree structure
     const prefixed = tree.map((n: any) => ({ ...n, path: `${dir}/${n.path}` }));
@@ -63,6 +63,7 @@ async function fetchSelectedDirsIndividually(
 
 function filterBlobs(nodes: TreeNode[]): TreeNode[] {
   return nodes.filter(
-    (n) => n.type === "blob" && !isBinary(n.path) && (n.size ?? 0) <= MAX_FILE_SIZE
+    (n) =>
+      n.type === "blob" && !isBinary(n.path) && (n.size ?? 0) <= MAX_FILE_SIZE,
   );
 }
