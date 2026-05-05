@@ -1,25 +1,40 @@
 import { auth } from "@/auth"
 import SignIn from "./components/SignInButton";
 import SignOut from "./components/SignOutButton";
-import Username from "./components/UserInfo";
 import AppShell from "./components/AppShell"
+import ThemeToggle from "./components/ThemeToggle";
+import Mockup from "./components/Mockup";
 
 export default async function Home() {
   const session = await auth()
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <div className="layout-container">
+      <header className="header">
+        <h1 className="header-title">DocsGenerator</h1>
+        <div className="user-info">
+          <ThemeToggle />
+          {session && (
+            <>
+              <span className="user-name">Welcome, <strong>{session.user?.name}</strong></span>
+              <SignOut />
+            </>
+          )}
+        </div>
+      </header>
+
+      <main>
         {!session ? (
-          <SignIn />
+          <div className="welcome-container">
+            <h2 className="welcome-title">Documentation on Demand</h2>
+            <p className="welcome-subtitle">
+              Instantly generate comprehensive, context-aware documentation and architectural rundowns for any GitHub repository using AI.
+            </p>
+            <SignIn />
+            <Mockup />
+          </div>
         ) : (
-          <>
-            <div className="flex items-center justify-between">
-              <p className="text-sm">Signed in as {session.user?.name}</p>
-            </div>
-            <SignOut />
-            <AppShell />
-          </>
+          <AppShell />
         )}
       </main>
     </div>

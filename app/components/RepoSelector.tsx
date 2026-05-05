@@ -26,26 +26,32 @@ export default function RepoSelector({ onSelect }: Props) {
         })
     }, [])
 
-    if (loading) return <p className="text-sm text-zinc-500">Loading repositories...</p>
+    if (loading) return (
+        <div className="status-msg">
+            <span>Loading repositories...</span>
+        </div>
+    )
 
     return (
-        <select
-            defaultValue=""
-            // Use the array index as the option value so we can look up the full Repo object on change
-            onChange={(e) => {
-                const repo = repos[Number(e.target.value)]
-                if (repo) onSelect(repo)
-            }}
-            className="border rounded px-3 py-2 w-full"
-        >
-            <option value="" disabled>
-                Select a repository
-            </option>
-            {repos.map((repo, i) => (
-                <option key={`${repo.owner}/${repo.name}`} value={i}>
-                {repo.owner}/{repo.name}
+        <div className="select-wrapper">
+            <label className="select-label">Select Repository</label>
+            <select
+                defaultValue=""
+                onChange={(e) => {
+                    const repo = repos[Number(e.target.value)]
+                    if (repo) onSelect(repo)
+                }}
+                className="custom-select"
+            >
+                <option value="" disabled>
+                    Choose a repository...
                 </option>
-            ))}
-        </select>
+                {repos.map((repo, i) => (
+                    <option key={`${repo.owner}/${repo.name}`} value={i}>
+                    {repo.owner}/{repo.name}
+                    </option>
+                ))}
+            </select>
+        </div>
     )
 }

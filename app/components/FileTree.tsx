@@ -67,13 +67,9 @@ function TreeItem({
         return (
             <div
             onClick={() => onSelect(entry.node)}
-            className={`cursor-pointer px-2 py-0.5 rounded text-sm ${
-                selected
-                    ? "bg-blue-100 dark:bg-blue-900"
-                    : "hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            }`}
+            className={`tree-item ${selected ? "active" : ""}`}
             >
-                {entry.name}
+                <span className="tree-icon">📄</span> {entry.name}
             </div>
         )
     }
@@ -82,12 +78,12 @@ function TreeItem({
         <div>
             <div
             onClick={() => setOpen((o) => !o)}
-            className="cursor-pointer px-2 py-0.5 rounded text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            className="tree-item tree-folder"
             >
-                {open ? "▾" : "▸"} {entry.name}/
+                <span className="tree-icon">{open ? "📂" : "📁"}</span> {entry.name}
             </div>
             {open && (
-                <div className="ml-4">
+                <div className="tree-children">
                 {entry.children.map((child) => (
                     <TreeItem
                     key={child.type === "file" ? child.node.sha : child.name}
@@ -119,7 +115,7 @@ export default function FileTree({ nodes, onSelect }: Props) {
     }
 
     return (
-        <div className="font-mono">
+        <div className="tree-container">
             {tree.map((entry) => (
                 <TreeItem
                 key={entry.type === "file" ? entry.node.sha : entry.name}

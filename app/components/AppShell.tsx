@@ -74,25 +74,45 @@ export default function AppShell() {
     }
 
     return (
-        <div className="flex flex-col gap-6">
-            <RepoSelector onSelect={handleRepoSelect} />
+        <div className="app-grid">
+            <div className="panel sidebar-panel">
+                <RepoSelector onSelect={handleRepoSelect} />
 
-            {loadingTree && <p className="text-sm text-zinc-500">Loading file tree...</p>}
+                {loadingTree && (
+                    <div className="status-msg">
+                        <span>Loading repository tree...</span>
+                    </div>
+                )}
 
-            {nodes && (
-                <div className="border rounded p-4 max-h-96 overflow-auto">
+                {nodes && !loadingTree && (
                     <FileTree nodes={nodes} onSelect={handleFileSelect} />
-                </div>
-            )}
+                )}
+            </div>
 
-            {selectedNode && (
-                <FileRundown
-                    node={selectedNode}
-                    rundown={rundown}
-                    loading={loadingRundown}
-                    error={rundownError}
-                />
-            )}
+            <div className="panel content-panel">
+                {!selectedNode && !nodes && !loadingTree && (
+                    <div className="empty-state">
+                        <div className="empty-icon">📁</div>
+                        <p>Select a repository to explore its codebase</p>
+                    </div>
+                )}
+
+                {!selectedNode && nodes && (
+                    <div className="empty-state">
+                        <div className="empty-icon">📄</div>
+                        <p>Select a file to generate a rundown</p>
+                    </div>
+                )}
+
+                {selectedNode && (
+                    <FileRundown
+                        node={selectedNode}
+                        rundown={rundown}
+                        loading={loadingRundown}
+                        error={rundownError}
+                    />
+                )}
+            </div>
         </div>
     )
 }
