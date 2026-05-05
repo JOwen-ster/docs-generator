@@ -1,4 +1,5 @@
 import { auth } from "@/auth"
+import { GITHUB_API } from "@/app/lib/github/shared"
 
 interface GithubRepo {
     name: string
@@ -15,7 +16,7 @@ export async function GET() {
     }
 
     const res = await fetch(
-        "https://api.github.com/user/repos?sort=updated&per_page=50",
+        `${GITHUB_API}/user/repos?sort=updated&per_page=50`,
         {
         headers: {
             Authorization: `Bearer ${session.access_token}`,

@@ -1,7 +1,6 @@
 import { githubFetch } from "./url-fetch";
-import { isBinary, TreeNode } from "./shared";
+import { isBinary, TreeNode, GITHUB_API } from "./shared";
 
-const GITHUB_API = "https://api.github.com";
 const MAX_FILE_SIZE = 500_000;
 
 interface TreeResponse {

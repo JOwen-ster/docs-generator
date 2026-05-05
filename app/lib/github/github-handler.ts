@@ -2,9 +2,7 @@ import { auth } from "@/auth";
 import { githubFetch } from "./url-fetch";
 import { fetchTree } from "./tree-fetch";
 import { fetchBlobs } from "./blob-fetch";
-import { RepoFile } from "./shared";
-
-const GITHUB_API = "https://api.github.com";
+import { RepoFile, GITHUB_API } from "./shared";
 
 export interface ArtifactInput {
   path: string;
