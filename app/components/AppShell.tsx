@@ -77,7 +77,7 @@ export default function AppShell() {
 
     try {
       const files = await fetchFileContents(selectedNodes);
-      let projectContext;
+      let projectContext: { path: string; content: string }[] | undefined;
 
       if (useFullContext) {
         // Fetch ALL files for project context (excluding the ones already fetched)
@@ -144,7 +144,7 @@ export default function AppShell() {
           >
             <button
               type="button"
-              className="btn primary"
+              className="btn-primary"
               disabled={checkedPaths.size === 0 || loadingRundown}
               onClick={() => handleSummarize(false)}
             >
@@ -152,7 +152,7 @@ export default function AppShell() {
             </button>
             <button
               type="button"
-              className="btn secondary"
+              className="btn-secondary"
               disabled={checkedPaths.size === 0 || loadingRundown}
               onClick={() => handleSummarize(true)}
             >

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { auth } from "@/auth";
 import AppShell from "./components/AppShell";
 import Mockup from "./components/Mockup";
@@ -11,7 +12,13 @@ export default async function Home() {
   return (
     <div className="layout-container">
       <header className="header">
-        <h1 className="header-title">DocsGenerator</h1>
+        <Link
+          href="/"
+          className="header-title"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          DocsGenerator
+        </Link>
         <div className="user-info">
           <ThemeToggle />
           {session && (

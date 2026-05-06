@@ -5,6 +5,7 @@ export default function Mockup() {
         <div
           className="panel sidebar-panel mockup-panel feature-hover"
           data-tooltip="Seamlessly browse any GitHub repository"
+          style={{ display: "flex", flexDirection: "column" }}
         >
           <div className="select-wrapper">
             <label className="select-label">Select Repository</label>
@@ -13,35 +14,142 @@ export default function Mockup() {
             </div>
           </div>
 
-          <div className="tree-container">
-            <div className="tree-item tree-folder">
-              <span className="tree-icon">📁</span> src
-            </div>
-            <div className="tree-children">
-              <div className="tree-item tree-folder">
-                <span className="tree-icon">📁</span> components
-              </div>
-              <div className="tree-children">
-                <div className="tree-item active">
-                  <span className="tree-icon">📄</span> DriveInterface.astro
+          <div style={{ flexGrow: 1, overflowY: "auto", marginBottom: "1rem" }}>
+            <div className="tree-container">
+              <div
+                className="tree-item tree-folder"
+                style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+              >
+                <input type="checkbox" readOnly />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    flexGrow: 1,
+                  }}
+                >
+                  <span className="tree-icon">📁</span> src
                 </div>
               </div>
-              <div className="tree-item tree-folder">
-                <span className="tree-icon">📁</span> layouts
+              <div className="tree-children">
+                <div
+                  className="tree-item tree-folder"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
+                  <input type="checkbox" readOnly checked />
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      flexGrow: 1,
+                    }}
+                  >
+                    <span className="tree-icon">📂</span> components
+                  </div>
+                </div>
+                <div className="tree-children">
+                  <div
+                    className="tree-item"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                    }}
+                  >
+                    <input type="checkbox" readOnly checked />
+                    <span className="tree-icon">📄</span> DriveInterface.astro
+                  </div>
+                </div>
+                <div
+                  className="tree-item tree-folder"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
+                  <input type="checkbox" readOnly />
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      flexGrow: 1,
+                    }}
+                  >
+                    <span className="tree-icon">📁</span> layouts
+                  </div>
+                </div>
+                <div
+                  className="tree-item tree-folder"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
+                  <input type="checkbox" readOnly />
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      flexGrow: 1,
+                    }}
+                  >
+                    <span className="tree-icon">📁</span> lib
+                  </div>
+                </div>
+                <div
+                  className="tree-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
+                  <input type="checkbox" readOnly />
+                  <span className="tree-icon">📄</span> middleware.ts
+                </div>
               </div>
-              <div className="tree-item tree-folder">
-                <span className="tree-icon">📁</span> lib
+              <div
+                className="tree-item"
+                style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+              >
+                <input type="checkbox" readOnly />
+                <span className="tree-icon">📄</span> package.json
               </div>
-              <div className="tree-item">
-                <span className="tree-icon">📄</span> middleware.ts
+              <div
+                className="tree-item"
+                style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+              >
+                <input type="checkbox" readOnly />
+                <span className="tree-icon">📄</span> README.md
               </div>
             </div>
-            <div className="tree-item">
-              <span className="tree-icon">📄</span> package.json
-            </div>
-            <div className="tree-item">
-              <span className="tree-icon">📄</span> README.md
-            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.5rem",
+              padding: "1rem",
+              borderTop: "1px solid var(--border)",
+            }}
+          >
+            <button type="button" className="btn-primary">
+              Summarize Selected (1)
+            </button>
+            <button type="button" className="btn-secondary">
+              Summarize with Full Context
+            </button>
           </div>
         </div>
 
