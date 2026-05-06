@@ -28,9 +28,7 @@ export async function GET(request: Request) {
     // GitHub blob API always returns base64; decode before sending to the client
     const content =
       blob.encoding === "base64"
-        ? Buffer.from(blob.content.replace(/\n/g, ""), "base64").toString(
-            "utf-8",
-          )
+        ? decodeBase64(blob.content)
         : blob.content;
 
     return Response.json({ content });
