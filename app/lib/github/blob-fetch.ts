@@ -1,5 +1,5 @@
+import type { RepoFile, TreeNode } from "./shared";
 import { githubFetch } from "./url-fetch";
-import { RepoFile, TreeNode } from "./shared";
 
 interface BlobResponse {
   content: string;
@@ -19,7 +19,7 @@ interface FetchBlobsResult {
 export async function fetchBlobs(
   nodes: TreeNode[],
   token: string,
-  options: FetchBlobsOptions = {}
+  options: FetchBlobsOptions = {},
 ): Promise<FetchBlobsResult> {
   const { concurrency = 10, onProgress } = options;
 
@@ -36,10 +36,17 @@ export async function fetchBlobs(
       const blob = await githubFetch<BlobResponse>(node.url, token);
       const content =
         blob.encoding === "base64"
-          ? Buffer.from(blob.content.replace(/\n/g, ""), "base64").toString("utf-8")
+          ? Buffer.from(blob.content.replace(/\n/g, ""), "base64").toString(
+              "utf-8",
+            )
           : blob.content;
 
-      files.push({ path: node.path, content, size: node.size ?? 0, sha: node.sha });
+      files.push({
+        path: node.path,
+        content,
+        size: node.size ?? 0,
+        sha: node.sha,
+      });
     } catch (err) {
       errors.push({
         path: node.path,

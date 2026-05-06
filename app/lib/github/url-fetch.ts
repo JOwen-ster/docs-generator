@@ -1,7 +1,7 @@
 export async function githubFetch<T>(
   url: string,
   token: string,
-  attempt = 0
+  attempt = 0,
 ): Promise<T> {
   const res = await fetch(url, {
     headers: {

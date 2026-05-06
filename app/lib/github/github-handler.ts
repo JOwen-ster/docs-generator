@@ -1,8 +1,8 @@
 import { auth } from "@/auth";
-import { githubFetch } from "./url-fetch";
-import { fetchTree } from "./tree-fetch";
 import { fetchBlobs } from "./blob-fetch";
-import { RepoFile, GITHUB_API } from "./shared";
+import { GITHUB_API, type RepoFile } from "./shared";
+import { fetchTree } from "./tree-fetch";
+import { githubFetch } from "./url-fetch";
 
 export interface ArtifactInput {
   path: string;
@@ -19,7 +19,7 @@ export async function getArtifactContents(
   owner: string,
   repo: string,
   selections: ArtifactInput[],
-  onProgress?: (completed: number, total: number) => void
+  onProgress?: (completed: number, total: number) => void,
 ): Promise<ArtifactContent[]> {
   const session = await auth();
   const token = session?.access_token as string;
@@ -27,7 +27,7 @@ export async function getArtifactContents(
   // get root of main branch
   const { default_branch } = await githubFetch<{ default_branch: string }>(
     `${GITHUB_API}/repos/${owner}/${repo}`,
-    token
+    token,
   );
 
   // fetch the full tree (with truncation fallback)
@@ -35,7 +35,13 @@ export async function getArtifactContents(
     .filter((s) => s.type === "dir")
     .map((s) => s.path);
 
-  const allNodes = await fetchTree(owner, repo, default_branch, token, selectedDirs);
+  const allNodes = await fetchTree(
+    owner,
+    repo,
+    default_branch,
+    token,
+    selectedDirs,
+  );
 
   // gather the relevant tree nodes for each selection
   const nodesByArtifact = selections.map((selection) => {
@@ -44,8 +50,8 @@ export async function getArtifactContents(
       return { ...selection, nodes: node ? [node] : [] };
     }
     // Directory: collect all blobs underneath it
-    const children = allNodes.filter(
-      (n) => n.path.startsWith(`${selection.path}/`)
+    const children = allNodes.filter((n) =>
+      n.path.startsWith(`${selection.path}/`),
     );
     return { ...selection, nodes: children };
   });
