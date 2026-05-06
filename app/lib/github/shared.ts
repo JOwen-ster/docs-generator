@@ -62,6 +62,6 @@ export function isBinary(path: string): boolean {
   return BINARY_EXTENSIONS.has(ext);
 }
 
-function decodeBase64(encoded: string): string {
+export function decodeBase64(encoded: string): string {
   return Buffer.from(encoded.replace(/\n/g, ""), "base64").toString("utf-8");
 }

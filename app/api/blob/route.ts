@@ -2,6 +2,7 @@
 // The client passes ?url= which is the GitHub blob API URL stored on each TreeNode.
 
 import { githubFetch } from "@/app/lib/github/url-fetch";
+import { decodeBase64 } from "@/app/lib/github/shared";
 import { auth } from "@/auth";
 
 interface BlobResponse {

@@ -1,4 +1,5 @@
 import type { RepoFile, TreeNode } from "./shared";
+import { decodeBase64 } from "./shared";
 import { githubFetch } from "./url-fetch";
 
 interface BlobResponse {
