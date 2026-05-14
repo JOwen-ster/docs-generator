@@ -1,40 +1,79 @@
-# docs-generator
+# 📝 DocsGenerator
 
-* An AI powered markdown documentation generator for GitHub repositories.
+**Instantly generate comprehensive, context-aware documentation and architectural rundowns for any GitHub repository using AI.**
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+DocsGenerator simplifies the process of understanding complex codebases by leveraging Google Gemini to provide technical summaries of files and directories directly within your browser.
 
-## Getting Started
+---
 
-First, run the development server:
+## ✨ Key Features
+
+- **🔐 Secure Authentication**: Sign in with GitHub to access your public and private repositories.
+- **🌳 Recursive File Tree**: Explore repositories with a native-feeling tree view.
+- **🤖 AI-Powered Rundowns**: Generate 2-3 sentence summaries and key technical bullets for any file or directory.
+- **⚡ High Performance**: Built with Next.js 15/16 and the React Compiler for a snappy user experience.
+- **🌗 Theme Support**: Fully functional light and dark modes.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Obtain API Keys
+
+You will need the following credentials to run the application:
+
+| Key | Description | Source |
+| :--- | :--- | :--- |
+| `GEMINI_API_KEY` | Google AI Studio Key | [Google AI Studio](https://aistudio.google.com/app/apikey) |
+| `AUTH_GITHUB_ID` | GitHub OAuth Client ID | [GitHub Developer Settings](https://github.com/settings/developers) |
+| `AUTH_GITHUB_SECRET` | GitHub OAuth Client Secret | [GitHub Developer Settings](https://github.com/settings/developers) |
+| `AUTH_SECRET` | NextAuth Encryption Secret | Run `pnpm dlx auth secret` |
+
+> **Note**: When creating your GitHub OAuth App, set the **Authorization callback URL** to `http://localhost:3000/api/auth/callback/github`.
+
+### 2. Configure Environment
+
+Create a `.env.local` file in the root directory and add your keys:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+GEMINI_API_KEY=your_gemini_key
+AUTH_GITHUB_ID=your_github_id
+AUTH_GITHUB_SECRET=your_github_secret
+AUTH_SECRET=your_auth_secret
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Install & Run
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Install dependencies
+pnpm i
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Start the development server
+pnpm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) to see the result.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📂 Directory Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Path | Description |
+| :--- | :--- |
+| **`app/`** | The main application logic using Next.js App Router. |
+| **`app/api/`** | Serverless functions for Auth, GitHub API proxying, and Gemini generation. |
+| **`app/components/`** | React components (`AppShell`, `FileTree`, `FileRundown`, etc.). |
+| **`app/lib/github/`** | Core utilities for fetching repository trees and blob contents. |
+| **`auth.ts`** | NextAuth configuration and GitHub provider setup. |
+| **`public/`** | Static assets like icons and images. |
+| **`biome.json`** | Configuration for the Biome linter and formatter. |
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Linting**: `pnpm run lint` (uses Biome)
+- **Formatting**: `pnpm run format`
+- **Build**: `pnpm run build`
+
+---
