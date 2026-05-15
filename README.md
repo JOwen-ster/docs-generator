@@ -42,15 +42,19 @@ DocsGenerator simplifies the process of understanding complex codebases by lever
 
 ---
 
-### 💻 Generation Options
+### 💻 Generation
 
-<img src="screenshots/generate.png" width="100%" alt="Generation Progress" />
+<img src="screenshots/generate.png" width="100%" alt="Generation Options" />
 
 <br>
 
 <img src="screenshots/result.png" width="100%" alt="AI Generated Rundown" />
 
 ---
+
+### App Flow
+
+<img src="screenshots/diagram.png" width="100%" alt="App Flow Diagram" />
 
 ## 🚀 Getting Started
 
