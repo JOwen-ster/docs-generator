@@ -118,9 +118,7 @@ Open [http://localhost:3000](http://localhost:3000) to see the result.
 | **`FileRundown`** | Component | The output display. It shows the AI's summary and technical highlights once the generation process completes. |
 | **`/api/generate-docs`** | API Route | The AI bridge. It takes selected file contents, constructs a context-aware prompt, and sends it to Gemini for JSON-structured rundowns. |
 | **`/api/tree` & `/api/blob`** | API Routes | Proxy routes that securely fetch the repository structure and raw file contents from GitHub using the user's session token. |
-| **`github-handler.ts`** | Helper | Orchestrates the complex logic of resolving a mix of directory and file selections into a flat list of file contents. |
 | **`tree-fetch.ts`** | Helper | Handles recursive tree fetching. It includes logic to handle "truncated" responses from GitHub for large repositories by fetching sub-trees. |
-| **`blob-fetch.ts`** | Helper | A high-performance fetcher that uses a concurrent worker pool to download multiple files from GitHub simultaneously while deduplicating by SHA. |
 | **`url-fetch.ts`** | Helper | A resilient fetch wrapper that handles GitHub API versioning, authentication, and automatic retries on rate limits (exponential backoff). |
 
 ---
