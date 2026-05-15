@@ -16,6 +16,42 @@ DocsGenerator simplifies the process of understanding complex codebases by lever
 
 ---
 
+## 🖼️ Preview
+
+### 🌗 Dark & Light Mode
+
+<img src="screenshots/home_dark.png" width="100%" alt="Home Dark Mode" />
+
+<br>
+
+<img src="screenshots/home_light.png" width="100%" alt="Home Light Mode" />
+
+---
+
+### 🛠️ Workflow & Features
+
+<img src="screenshots/login.png" width="100%" alt="Login Page" />
+
+<br>
+
+<img src="screenshots/select.png" width="100%" alt="Repo Selection" />
+
+<br>
+
+<img src="screenshots/expanded_select.png" width="100%" alt="File Tree Selection" />
+
+---
+
+### 💻 Generation Options
+
+<img src="screenshots/generate.png" width="100%" alt="Generation Progress" />
+
+<br>
+
+<img src="screenshots/result.png" width="100%" alt="AI Generated Rundown" />
+
+---
+
 ## 🚀 Getting Started
 
 ### 1. Obtain API Keys
@@ -44,11 +80,15 @@ AUTH_SECRET=your_auth_secret
 
 ### 3. Install & Run
 
-```bash
-# Install dependencies
-pnpm i
+Install project dependencies.
 
-# Start the development server
+```bash
+pnpm i
+```
+
+### Start the development server
+
+```bash
 pnpm run dev
 ```
 
@@ -75,5 +115,6 @@ Open [http://localhost:3000](http://localhost:3000) to see the result.
 - **Linting**: `pnpm run lint` (uses Biome)
 - **Formatting**: `pnpm run format`
 - **Build**: `pnpm run build`
+- **Start a Build**: `pnpm run start`
 
 ---
